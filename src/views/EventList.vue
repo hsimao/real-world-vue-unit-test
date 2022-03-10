@@ -1,11 +1,13 @@
 <template>
-  <h1>Events for Good</h1>
+  <h1 data-test="event-list-title">Events for Good</h1>
   <div class="events">
     <router-link
       class="event-link"
+      v-for="event in events"
+      :key="event.id"
       :to="{ name: 'EventDetails', params: { id: event.id } }"
     >
-      <EventCard v-for="event in events" :key="event.id" :event="event" />
+      <EventCard data-test="event-list-item" :event="event" />
     </router-link>
   </div>
 </template>
@@ -39,5 +41,9 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.event-link {
+  color: #2c3e50;
+  text-decoration: none;
 }
 </style>
